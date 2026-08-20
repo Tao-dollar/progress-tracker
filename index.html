@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillForge Academy</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="page-shell">
+        <nav class="topbar">
+            <div class="brand">SkillForge</div>
+            <div class="nav-links">
+                <button class="nav-btn active" data-view="dashboardView">Dashboard</button>
+                <button class="nav-btn" data-view="cssView">CSS Test</button>
+                <button class="nav-btn" data-view="profileView">Profile</button>
+            </div>
+            <button class="secondary-btn hidden" id="logoutBtn">Logout</button>
+        </nav>
+
+        <section id="authView" class="auth-shell">
+            <div class="auth-card">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-auth="login">Login</button>
+                    <button class="tab-btn" data-auth="register">Register</button>
+                </div>
+
+                <form id="loginForm" class="auth-form">
+                    <h2>Welcome back</h2>
+                    <label>
+                        Email
+                        <input type="email" id="loginEmail" placeholder="you@example.com" required />
+                    </label>
+                    <label>
+                        Password
+                        <input type="password" id="loginPassword" placeholder="Your password" required />
+                    </label>
+                    <button type="submit" class="primary-btn full-width">Login</button>
+
+                    <div class="oauth-divider"><span>or</span></div>
+                    <button type="button" class="google-btn full-width" id="googleLoginBtn">
+                        <span class="google-icon">G</span>
+                        Continue with Google
+                    </button>
+                </form>
+
+                <form id="registerForm" class="auth-form hidden">
+                    <h2>Create account</h2>
+                    <label>
+                        Full name
+                        <input type="text" id="registerName" placeholder="Jane Doe" required />
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" id="registerEmail" placeholder="you@example.com" required />
+                    </label>
+                    <label>
+                        Password
+                        <input type="password" id="registerPassword" placeholder="Create a password" required />
+                    </label>
+                    <button type="submit" class="success-btn full-width">Register</button>
+
+                    <div class="oauth-divider"><span>or</span></div>
+                    <button type="button" class="google-btn full-width" id="googleRegisterBtn">
+                        <span class="google-icon">G</span>
+                        Sign up with Google
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="dashboardView" class="app-view hidden">
+            <div class="container">
+                <header>
+                    <h1>HTML Progress</h1>
+                    <div class="status-pill" id="statusPill">Level 1 • Beginner</div>
+                </header>
+
+                <section class="dashboard">
+                    <div class="card">
+                        <span class="label">Current Level</span>
+                        <p class="value" id="levelValue">Beginner</p>
+                    </div>
+                    <div class="card">
+                        <span class="label">XP Earned</span>
+                        <p class="value" id="xpValue">0 XP</p>
+                    </div>
+                    <div class="card">
+                        <span class="label">Corrected Projects</span>
+                        <p class="value" id="projectsValue">0</p>
+                    </div>
+                    <div class="card">
+                        <span class="label">Best Score</span>
+                        <p class="value" id="scoreValue">0%</p>
+                    </div>
+                </section>
+
+                <main>
+                    <section class="project-panel">
+                        <div class="level-badge" id="levelBadge">Beginner</div>
+                        <h2 class="project-title" id="projectTitle">Loading project...</h2>
+                        <p class="project-description" id="projectDescription"></p>
+                        <ul class="task-list" id="taskList"></ul>
+
+                        <div class="actions">
+                            <button class="primary-btn" id="nextProjectBtn">New project</button>
+                            <button class="success-btn" id="submitProjectBtn">Submit code for correction</button>
+                            <button class="secondary-btn" id="revealSolutionBtn">Show solution</button>
+                            <button class="secondary-btn" id="resetBtn">Reset progress</button>
+                        </div>
+
+                        <div class="code-submission">
+                            <label for="codeInput">Your HTML code</label>
+                            <textarea id="codeInput" rows="12" spellcheck="false"
+                                placeholder="Paste your HTML here for review..."></textarea>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>Project Example</h4>
+                            <iframe id="projectPreview" title="Project preview" sandbox="allow-scripts"></iframe>
+                        </div>
+
+                        <div class="solution-box" id="solutionBox">
+                            <h4>Solution</h4>
+                            <pre id="solutionOutput"></pre>
+                        </div>
+                    </section>
+
+                    <aside class="side-panel">
+                        <h3>Progress</h3>
+                        <div class="progress-bar">
+                            <span id="progressFill"></span>
+                        </div>
+                        <p class="status-message" id="statusMessage">Start with your first HTML task.</p>
+
+                        <h3>Learning Roadmap</h3>
+                        <ul class="learning-list" id="levelList"></ul>
+                    </aside>
+                </main>
+            </div>
+        </section>
+
+        <section id="cssView" class="app-view hidden">
+            <div class="container small-container">
+                <header>
+                    <h1>CSS Test</h1>
+                    <div class="status-pill">Style challenge</div>
+                </header>
+
+                <div class="css-panel">
+                    <div class="css-copy">
+                        <div class="level-badge" id="cssLevelBadge">CSS Beginner</div>
+                        <h2 id="cssChallengeTitle">Loading CSS challenge...</h2>
+                        <p id="cssChallengeDescription"></p>
+                        <ul id="cssTaskList"></ul>
+
+                        <div class="actions compact-actions">
+                            <button class="primary-btn" id="newCssBtn">New CSS challenge</button>
+                            <button class="success-btn" id="submitCssBtn">Submit CSS test</button>
+                            <button class="secondary-btn" id="revealCssBtn">Show solution</button>
+                        </div>
+
+                        <div class="code-submission">
+                            <label for="cssCodeInput">Your CSS code</label>
+                            <textarea id="cssCodeInput" rows="12" spellcheck="false"
+                                placeholder="Write your CSS here..."></textarea>
+                        </div>
+
+                        <div class="solution-box" id="cssSolutionBox">
+                            <h4>CSS Solution</h4>
+                            <pre id="cssSolutionOutput"></pre>
+                        </div>
+                    </div>
+
+                    <div class="css-preview-panel">
+                        <h3>Live Preview</h3>
+                        <iframe id="cssPreviewFrame" title="CSS preview" sandbox="allow-scripts"></iframe>
+                        <p class="status-message" id="cssStatusMessage">Build a clean card layout using CSS.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profileView" class="app-view hidden">
+            <div class="container small-container">
+                <header>
+                    <h1>Profile</h1>
+                    <div class="status-pill" id="profileLevelBadge">Level 1 • Beginner</div>
+                </header>
+
+                <div class="profile-card">
+                    <div class="profile-meta">
+                        <div class="avatar">U</div>
+                        <div>
+                            <h2 id="profileName">Student</h2>
+                            <p id="profileEmail">student@example.com</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-grid">
+                        <div class="mini-card">
+                            <span>XP</span>
+                            <strong id="profileXp">0 XP</strong>
+                        </div>
+                        <div class="mini-card">
+                            <span>HTML Tasks</span>
+                            <strong id="profileHtmlTasks">0</strong>
+                        </div>
+                        <div class="mini-card">
+                            <span>CSS Tests</span>
+                            <strong id="profileCssTasks">0</strong>
+                        </div>
+                        <div class="mini-card">
+                            <span>Best Score</span>
+                            <strong id="profileBestScore">0%</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
